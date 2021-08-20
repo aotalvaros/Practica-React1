@@ -23,6 +23,12 @@ class Tablero extends React.Component {
     };
   }
 
+  handleClick(i){
+    const cuadrados = this.state.cuadrados.slice();
+    cuadrados[i] = 'X';
+    this.setState({cuadrados:cuadrados});
+  }
+
   renderSquare(i) {
     return <Cuadrado value={this.state.cuadrados[i]}
     onClick={()=> this.handleClick(i)} />;
