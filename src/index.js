@@ -6,7 +6,7 @@ import "./index.css";
 class Cuadrado extends React.Component {
   render() {
     return (
-      <button className="cuadrados">
+      <button className="cuadrados" onClick={function(){alert('click'); }}>
         {this.props.value}
       </button>
     );
