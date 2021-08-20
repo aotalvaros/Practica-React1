@@ -34,7 +34,15 @@ class Tablero extends React.Component {
   }
 
   render() {
-    const status = 'Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
+    const ganador = calcularGanador(this.state.cuadrados);
+    let status;
+    if (ganador) {
+      status = `Ganador: ${ganador}`; 
+    }
+    else{
+      status = 'Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+    
 
     return (
       <div>
