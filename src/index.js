@@ -23,6 +23,13 @@ class Cuadrado extends React.Component {
 }
 
 class Tablero extends React.Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      cuadrados: Array(9).fill(null),
+    };
+  }
+
   renderSquare(i) {
     return <Cuadrado value={i} />;
   }
