@@ -15,7 +15,7 @@ class Cuadrado extends React.Component {
 
 class Tablero extends React.Component {
   renderSquare(i) {
-    return <Cuadrado />;
+    return <Cuadrado value={i} />;
   }
 
   render() {
