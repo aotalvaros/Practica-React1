@@ -15,6 +15,7 @@ class Tablero extends React.Component {
     super(props);
     this.state ={
       cuadrados: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
