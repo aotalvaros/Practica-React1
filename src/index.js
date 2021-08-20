@@ -4,9 +4,16 @@ import "./index.css";
 
 
 class Cuadrado extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      value: null
+    }
+  }
+
   render() {
     return (
-      <button className="cuadrados" onClick={function(){alert('click'); }}>
+      <button className="cuadrados" onClick={(){alert('click'); }}>
         {this.props.value}
       </button>
     );
