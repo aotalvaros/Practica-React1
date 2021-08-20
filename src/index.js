@@ -2,19 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-
 class Cuadrado extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      value: null
-    }
+    this.state = {
+      value: null,
+    };
   }
 
   render() {
     return (
-      <button className="cuadrados" onClick={(){alert('click'); }}>
-        {this.props.value}
+      <button
+        className="cuadrados"
+        onClick={() => this.setState({ value: "X" })}
+      >
+        {this.state.value}
       </button>
     );
   }
@@ -26,7 +28,7 @@ class Tablero extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = "Next player: X";
 
     return (
       <div>
@@ -69,7 +71,4 @@ class Juego extends React.Component {
 
 // ========================================
 
-ReactDOM.render(
-  <Juego />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Juego />, document.getElementById("root"));
