@@ -2,17 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-class Cuadrado extends React.Component {
-  render() {
-    return (
-      <button
-        className="cuadrados"
-        onClick={() => this.props.onClick()}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+function Cuadrado(props){
+  return(
+    <button className="cuadrados" onClick={props.onClick}>
+      {props.value}
+    </button>
+  )
 }
 
 class Tablero extends React.Component {
