@@ -21,8 +21,11 @@ class Tablero extends React.Component {
 
   handleClick(i){
     const cuadrados = this.state.cuadrados.slice();
-    cuadrados[i] = 'X';
-    this.setState({cuadrados:cuadrados});
+    cuadrados[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      cuadrados:cuadrados,
+      xIsNext: !this.state.xIsNext
+    });
   }
 
   renderSquare(i) {
