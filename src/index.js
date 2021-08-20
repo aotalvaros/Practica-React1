@@ -34,7 +34,7 @@ class Tablero extends React.Component {
   }
 
   render() {
-    const status = "Next player: X";
+    const status = 'Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
