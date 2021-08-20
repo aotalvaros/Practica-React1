@@ -31,7 +31,8 @@ class Tablero extends React.Component {
   }
 
   renderSquare(i) {
-    return <Cuadrado value={this.state.cuadrados[i]} />;
+    return <Cuadrado value={this.state.cuadrados[i]}
+    onClick={()=> this.handleClick(i)} />;
   }
 
   render() {
