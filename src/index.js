@@ -11,19 +11,6 @@ function Cuadrado(props) {
 }
 
 class Tablero extends React.Component {
-
-  handleClick(i) {
-    const cuadrados = this.state.cuadrados.slice();
-    if (calcularGanador(cuadrados) || cuadrados[i]) {
-      return;
-    }
-    cuadrados[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      cuadrados: cuadrados,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
   renderSquare(i) {
     return (
       <Cuadrado
@@ -67,6 +54,18 @@ class Juego extends React.Component {
       ],
       xIsNext: true,
     };
+  }
+  
+  handleClick(i) {
+    const cuadrados = this.state.cuadrados.slice();
+    if (calcularGanador(cuadrados) || cuadrados[i]) {
+      return;
+    }
+    cuadrados[i] = this.state.xIsNext ? "X" : "O";
+    this.setState({
+      cuadrados: cuadrados,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   render() {
