@@ -82,7 +82,7 @@ class Juego extends React.Component {
     const movimientos = history.map((step, move) => {
       const desc = move ? `Moverse al #: ${move}` : "Ir al inicio del juego";
       return (
-        <li>
+        <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
