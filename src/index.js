@@ -2,50 +2,52 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Cuadrado(props){
-  return(
+function Cuadrado(props) {
+  return (
     <button className="cuadrados" onClick={props.onClick}>
       {props.value}
     </button>
-  )
+  );
 }
 
 class Tablero extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       cuadrados: Array(9).fill(null),
       xIsNext: true,
     };
   }
 
-  handleClick(i){
+  handleClick(i) {
     const cuadrados = this.state.cuadrados.slice();
     if (calcularGanador(cuadrados) || cuadrados[i]) {
       return;
     }
-    cuadrados[i] = this.state.xIsNext ? 'X' : 'O';
+    cuadrados[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
-      cuadrados:cuadrados,
-      xIsNext: !this.state.xIsNext
+      cuadrados: cuadrados,
+      xIsNext: !this.state.xIsNext,
     });
   }
 
   renderSquare(i) {
-    return <Cuadrado value={this.state.cuadrados[i]}
-    onClick={()=> this.handleClick(i)} />;
+    return (
+      <Cuadrado
+        value={this.state.cuadrados[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
     const ganador = calcularGanador(this.state.cuadrados);
     let status;
     if (ganador) {
-      status = `Ganador: ${ganador}`; 
+      status = `Ganador: ${ganador}`;
+    } else {
+      status = "Siguiente jugador: " + (this.state.xIsNext ? "X" : "O");
     }
-    else{
-      status = 'Siguiente jugador: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
-    
 
     return (
       <div>
@@ -86,11 +88,9 @@ class Juego extends React.Component {
   }
 }
 
-// ========================================
-
 ReactDOM.render(<Juego />, document.getElementById("root"));
 
-function calcularGanador(cuadrados){
+function calcularGanador(cuadrados) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -102,8 +102,12 @@ function calcularGanador(cuadrados){
     [2, 4, 6],
   ];
   for (let i = 0; i < lines.length; i++) {
-    const[a,b,c] = lines[i];
-    if (cuadrados[a] && cuadrados[a] === cuadrados[b] && cuadrados[a] == cuadrados[c]) {
+    const [a, b, c] = lines[i];
+    if (
+      cuadrados[a] &&
+      cuadrados[a] === cuadrados[b] &&
+      cuadrados[a] === cuadrados[c]
+    ) {
       return cuadrados[a];
     }
   }
