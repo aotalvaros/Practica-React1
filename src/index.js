@@ -79,13 +79,25 @@ class Juego extends React.Component {
   }
 
   render() {
+    const history = this.state.history;
+    const current = history[history.length -1 ];
+    const ganador = calcularGanador(current.cuadrados);
+    let status;
+    if (ganador) {
+      status = `Ganador: ${ganador}`;
+    }else{
+      status = "Siguiente jugador: " + (this.state.xIsNext ? "X" : "O");
+    }
+
     return (
       <div className="game">
         <div className="game-board">
-          <Tablero />
+          <Tablero 
+          cuadrados={current.cuadrados}
+          onClick={(i)=> this.handleClick(i)}/>
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{status}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
