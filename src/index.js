@@ -52,6 +52,7 @@ class Juego extends React.Component {
           cuadrados: Array(9).fill(null),
         },
       ],
+      stepNumber: 0,
       xIsNext: true,
     };
   }
@@ -84,7 +85,7 @@ class Juego extends React.Component {
 
   render() {
     const history = this.state.history;
-    const current = history[history.length - 1];
+    const current = history[this.state.stepNumber];
     const ganador = calcularGanador(current.cuadrados);
 
     const movimientos = history.map((step, move) => {
