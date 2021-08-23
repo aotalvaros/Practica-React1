@@ -65,34 +65,47 @@ class Juego extends React.Component {
     }
     cuadrados[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
-      history: history.concat([{
-        cuadrados: cuadrados,
-      }]),
+      history: history.concat([
+        {
+          cuadrados: cuadrados,
+        },
+      ]),
       xIsNext: !this.state.xIsNext,
     });
   }
 
   render() {
     const history = this.state.history;
-    const current = history[history.length -1 ];
+    const current = history[history.length - 1];
     const ganador = calcularGanador(current.cuadrados);
+
+    const movimientos = history.map((step, move) => {
+      const desc = move ? `Moverse al #: ${move}` : "Ir al inicio del juego";
+      return (
+        <li>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
+
     let status;
     if (ganador) {
       status = `Ganador: ${ganador}`;
-    }else{
+    } else {
       status = "Siguiente jugador: " + (this.state.xIsNext ? "X" : "O");
     }
 
     return (
       <div className="game">
         <div className="game-board">
-          <Tablero 
-          cuadrados={current.cuadrados}
-          onClick={(i)=> this.handleClick(i)}/>
+          <Tablero
+            cuadrados={current.cuadrados}
+            onClick={(i) => this.handleClick(i)}
+          />
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{/* TODO */}</ol>
+          <ol>{movimientos}</ol>
         </div>
       </div>
     );
