@@ -55,15 +55,19 @@ class Juego extends React.Component {
       xIsNext: true,
     };
   }
-  
+
   handleClick(i) {
-    const cuadrados = this.state.cuadrados.slice();
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const cuadrados = current.cuadrados.slice();
     if (calcularGanador(cuadrados) || cuadrados[i]) {
       return;
     }
     cuadrados[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
-      cuadrados: cuadrados,
+      history: history.concat([{
+        cuadrados: cuadrados,
+      }]),
       xIsNext: !this.state.xIsNext,
     });
   }
