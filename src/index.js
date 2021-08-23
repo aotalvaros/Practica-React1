@@ -57,7 +57,7 @@ class Juego extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history;
+    const history = this.state.history.slice(0,this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const cuadrados = current.cuadrados.slice();
     if (calcularGanador(cuadrados) || cuadrados[i]) {
@@ -70,17 +70,18 @@ class Juego extends React.Component {
           cuadrados: cuadrados,
         },
       ]),
-      stepNumber: 0,
+      stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
   }
 
-  jumpTo(step){
+  jumpTo(step) {
     this.setState({
-      stepNumber:  step,
-      xIsNext: (step % 2) === 0,
-    })
+      stepNumber: step,
+      xIsNext: step % 2 === 0,
+    });
   }
+
   render() {
     const history = this.state.history;
     const current = history[history.length - 1];
