@@ -11,13 +11,6 @@ function Cuadrado(props) {
 }
 
 class Tablero extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cuadrados: Array(9).fill(null),
-      xIsNext: true,
-    };
-  }
 
   handleClick(i) {
     const cuadrados = this.state.cuadrados.slice();
@@ -34,8 +27,8 @@ class Tablero extends React.Component {
   renderSquare(i) {
     return (
       <Cuadrado
-        value={this.state.cuadrados[i]}
-        onClick={() => this.handleClick(i)}
+        value={this.props.cuadrados[i]}
+        onClick={() => this.props.onClick(i)}
       />
     );
   }
