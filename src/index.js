@@ -73,6 +73,18 @@ class Tablero extends React.Component {
 }
 
 class Juego extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: [
+        {
+          cuadrados: Array(9).fill(null),
+        },
+      ],
+      xIsNext: true,
+    };
+  }
+
   render() {
     return (
       <div className="game">
